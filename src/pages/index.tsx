@@ -59,6 +59,7 @@ export default function BasicModal() {
         onClose={() => setOpenAlert(false)}
         title={alertInfo?.title}
         detail={alertInfo?.detail}
+        severity={alertInfo?.severity}
       />
       <Head>
         <title>Woovi checkout</title>
@@ -215,8 +216,11 @@ export default function BasicModal() {
                     } catch (error: any) {
                       setOpenAlert(true);
                       setAlertInfo({
-                        title: error.title,
-                        detail: error.detail,
+                        title:
+                          error.title ??
+                          error.message ??
+                          'Internal server Error',
+                        detail: error.detail ?? 'An unexpected error ocurred',
                         severity: 'error',
                       });
                     } finally {
