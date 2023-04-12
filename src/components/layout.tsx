@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import CssBaseline from '@mui/material/CssBaseline';
 import { red } from '@mui/material/colors';
@@ -35,6 +35,7 @@ export default function Layout({ children }: React.PropsWithChildren) {
 }
 
 const MainContainer = ({ children }: React.PropsWithChildren) => {
+  const theme = useTheme();
   return (
     <CssBaseline>
       <Box
@@ -43,6 +44,7 @@ const MainContainer = ({ children }: React.PropsWithChildren) => {
           minHeight: '100vh',
           alignContent: 'center',
           justifyContent: 'center',
+          backgroundColor: theme.palette.grey[800],
         }}
       >
         {children}
