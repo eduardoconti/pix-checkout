@@ -1,5 +1,5 @@
 import { api, ApiErrorResponse } from '@/services/api/api';
-type CreateChargeRequestData = {
+export type CreateChargeRequestData = {
   debtor: {
     name: string;
     cpf: string;
@@ -14,10 +14,27 @@ type CreateChargeRequestData = {
   expiration: number;
 };
 
-export async function createCharge(data: CreateChargeRequestData) {
+export type CreateChargeResponseData = {
+  transaction_id: string;
+  psp_transaction_id: number;
+  status: string;
+  amount: number;
+  expiration: number;
+  emv: string;
+  qr_code: string;
+  created_at: string;
+  last_update: string;
+};
+
+export async function createCharge(
+  request: CreateChargeRequestData,
+): Promise<CreateChargeResponseData> {
   try {
-    const result = await api.post(`/immediate-charge`, data);
-    console.log(result);
+    const { data } = await api.post<CreateChargeResponseData>(
+      `/immediate-charge`,
+      request,
+    );
+    return data;
   } catch (error: any) {
     if (error?.response?.data) {
       const response = new ApiErrorResponse();

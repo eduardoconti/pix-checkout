@@ -45,6 +45,7 @@ const MainContainer = ({ children }: React.PropsWithChildren) => {
           alignContent: 'center',
           justifyContent: 'center',
           backgroundColor: theme.palette.grey[800],
+          padding: theme.spacing(2),
         }}
       >
         {children}
