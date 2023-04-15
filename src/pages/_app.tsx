@@ -1,4 +1,5 @@
 import Layout from '@/components/layout';
+import CheckoutProvider from '@/context/checkout-context';
 import '@/styles/globals.css';
 import { Box, Button, Typography, useTheme } from '@mui/material';
 import type { AppProps } from 'next/app';
@@ -32,7 +33,9 @@ export default function App({ Component, pageProps }: AppProps) {
       }
     >
       <Layout>
-        <Component {...pageProps} />{' '}
+        <CheckoutProvider>
+          <Component {...pageProps} />{' '}
+        </CheckoutProvider>
       </Layout>
     </ErrorBoundary>
   );
