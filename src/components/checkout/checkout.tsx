@@ -128,12 +128,12 @@ export default function Checkout({
                     borderRadius: theme.shape.borderRadius,
                   }}
                 >
-                  <Box
+                  <Paper
+                    elevation={4}
                     sx={{
                       width: '15%',
                       height: 30,
                       position: 'absolute',
-                      backgroundColor: theme.palette.grey[400],
                       zIndex: 2,
                       top: -15,
                       left: 15,
@@ -152,7 +152,7 @@ export default function Checkout({
                     >
                       Pix
                     </Typography>
-                  </Box>
+                  </Paper>
                   <Box
                     sx={{
                       width: '100%',
