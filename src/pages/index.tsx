@@ -22,8 +22,8 @@ export default function Home({
     if (authError) {
       setAlertInfo({
         severity: 'error',
-        detail: authError.detail,
-        title: authError.title,
+        detail: authError?.detail,
+        title: authError?.title,
       });
     }
   }, []);
@@ -57,7 +57,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
       });
       api.defaults.headers['Authorization'] = `Bearer ${access_token}`;
     } catch (error: any) {
-      authError = error.response?.data;
+      authError = {
+        title: error.response?.data?.title ?? 'Internal server error',
+        detail: error.response?.data?.detail ?? error.message,
+      };
     } finally {
     }
   }
